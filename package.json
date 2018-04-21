@@ -1,5 +1,31 @@
 {
   "name": "welltok",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-react": "^6.24.1",
+    "file-loader": "^1.1.11",
+    "lodash": "^4.17.5",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.6.0"
+  },
+  "scripts": {
+    "start": "webpack --watch",
+    "postinstall": "webpack"
+  },
+  "engines": {
+    "node": "v9.11.1",
+    "npm": "5.8.0"
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.2"
+  }
 }
