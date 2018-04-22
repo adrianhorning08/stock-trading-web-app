@@ -48,6 +48,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         <h1>Dash</h1>
+        <h2>Hey there {this.props.currentUser.user.username}</h2>
         Search for a stock
         <input
           type='text'
