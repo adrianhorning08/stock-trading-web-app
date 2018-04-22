@@ -19,10 +19,16 @@ class StockItem extends React.Component {
     if (this.state.currPrice === null) {
       return null;
     } else {
+      let gainLoss = ((this.state.currPrice - this.props.stock.purchase_cost)/this.props.stock.purchase_cost).toFixed(2);
       return (
-        <div>
-          {this.props.stock.ticker_id}
-          {this.state.currPrice}
+        <div className="stock-item">
+          <h2>{this.props.stock.ticker_id}</h2>
+          <h3>Current Price</h3>
+          ${this.state.currPrice}
+          <h3>Your Shares</h3>
+          {this.props.stock.amount}
+          <h3>Gain/Loss</h3>
+          {gainLoss}%
         </div>
       );
     }

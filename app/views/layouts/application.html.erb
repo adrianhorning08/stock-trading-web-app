@@ -3,11 +3,18 @@
   <head>
     <title>Welltok</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Muli:200,300,400,600,800,900" rel="stylesheet">
+    <% if logged_in? %>
+      <script type="text/javascript">
+          window.currentUser = <%= render(
+            "api/users/user.json.jbuilder",
+            user: current_user
+          ).html_safe %>
+      </script>
+    <% end %>
   </head>
-
   <body>
     <%= yield %>
   </body>

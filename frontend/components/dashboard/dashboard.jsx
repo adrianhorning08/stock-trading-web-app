@@ -13,8 +13,8 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.currentUser.user !== undefined) {
-      this.props.fetchUser(this.props.currentUser.user.id);
+    if (this.props.currentUser !== null) {
+      this.props.fetchUser(this.props.currentUser.currentUser.id);
     }
   }
 
@@ -47,8 +47,8 @@ class Dashboard extends React.Component {
 
     return (
       <div>
-        <h1>Dash</h1>
-        <h2>Hey there {this.props.currentUser.user.username}</h2>
+        <button onClick={this.props.logout}>Logout</button>
+        <h1>Dashboard</h1>
         Search for a stock
         <input
           type='text'
@@ -59,8 +59,7 @@ class Dashboard extends React.Component {
         <button onClick={this.searchForStock}>Check stock</button>
         <h2>Current Price</h2>
         {this.state.stockPrice}
-        <button onClick={this.props.logout}>Logout</button>
-        <h2>My Stocks</h2>
+        <h1>My Stocks</h1>
         {stockList}
       </div>
     );

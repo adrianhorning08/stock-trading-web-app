@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.delete_all
+Stock.delete_all
+
+User.create!(
+  username: 'Test',
+  password: 'password'
+)
+
+Stock.create!(
+  ticker_id: 'FB',
+  purchase_cost: 10,
+  amount: 1000,
+)
+
+Stock.create!(
+  ticker_id: 'AMZN',
+  purchase_cost: 1,
+  amount: 100,
+)
