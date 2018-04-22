@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Notes
+I tried to use the Alpha Vantage API, but it wasn't working midway through doing this, so I used https://iextrading.com API.
 
-Things you may want to cover:
+I had problems with Auth. That's why when you initially login, it will break. You have to refresh it and it will work
 
-* Ruby version
+## User credentials
+username: test
+password: password
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Clone repo
+2. Bundle install
+3. Run `npm install`
+4. Run `rails db:setup`
+5. Run `rails s`
+6. Navigate to localhost:300

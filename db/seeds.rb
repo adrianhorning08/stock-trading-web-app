@@ -10,7 +10,7 @@ User.delete_all
 Stock.delete_all
 
 User.create!(
-  username: 'Test',
+  username: 'test',
   password: 'password'
 )
 
