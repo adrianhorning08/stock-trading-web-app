@@ -1,10 +1,10 @@
-import * as APIutil from '../util/task_api_util';
+import * as APIutil from '../util/stocks_api_util';
 
 export const RECEIVE_STOCK = 'RECEIVE_STOCK';
 export const REMOVE_STOCK = 'REMOVE_STOCK';
 
 export const fetchStock = stock => dispatch => {
-  return APIutil.fetchTask(stock)
+  return APIutil.fetchStock(stock)
     .then(serverStock => dispatch(receieveStock(serverStock)));
 };
 
@@ -16,7 +16,7 @@ const receieveStock = stock => {
 };
 
 export const buyStock = stock => dispatch => {
-  return APIutil.createTask(stock)
+  return APIutil.createStock(stock)
     .then(serverStock => dispatch(receieveStock(serverStock)));
 };
 
@@ -26,7 +26,7 @@ export const updateStock = stock => dispatch => {
 };
 
 export const deleteStock = stock => dispatch => {
-  return APIutil.deleteTask(stock)
+  return APIutil.deleteStock(stock)
     .then(serverStock => dispatch(removeStock(serverStock)));
 };
 
