@@ -4,12 +4,13 @@ import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.entities.session.currentUser
+    // user here
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    logout: () => dispatch(logout()),
     logout: () => dispatch(logout())
   };
 };

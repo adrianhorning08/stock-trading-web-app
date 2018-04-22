@@ -6,6 +6,8 @@ class Dashboard extends React.Component {
     return (
       <div>
         <h1>Dash</h1>
+        Search for a stock
+        <input></input>
         <button onClick={this.props.logout}>Logout</button>
       </div>
     );
