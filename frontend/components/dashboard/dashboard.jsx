@@ -1,15 +1,15 @@
 import React from 'react';
 import StockItem from '../stocks/stock_items';
+import { fetchCurrPrice } from '../../util/stocks_api_util';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       stockName: '',
-      stock: ''
+      stockPrice: null
     };
     this.searchForStock = this.searchForStock.bind(this);
-    this.calcCurrStockPrice = this.calcCurrStockPrice.bind(this);
   }
 
   componentDidMount() {
@@ -26,45 +26,9 @@ class Dashboard extends React.Component {
 
   searchForStock(e) {
     e.preventDefault();
-    this.props.fetchStock(this.state.stockName).then(res => {
-      this.calcCurrStockPrice(res);
+    fetchCurrPrice(this.state.stockName).then(res => {
+      this.setState({stockPrice: res.quote.latestPrice});
     });
-  }
-
-  calcCurrStockPrice(stockTimes) {
-    const date = new Date();
-    let dayOfTheWeek = date.getDay();
-    let day = date.getDate();
-    let month = date.getMonth() +1;
-    let hour = date.getHours();
-
-    // if the day is on a weekend
-    if (dayOfTheWeek === 6) {
-      day--;
-      hour = '16:00:00';
-    }
-    if (dayOfTheWeek === 0) {
-      day-=2;
-      hour = '16:00:00';
-    }
-
-    // if user is trying to acccess after closing
-    if (hour >= 16) {
-      hour = '16:00:00';
-    }
-    // Or before opening
-    if (hour < 10) {
-      day--;
-      hour = '16:00:00';
-    }
-    // Add zeros for days or months less than 10
-    if (day < 10) {
-      day = '0' + day;
-    }
-    if (month < 10) {
-      month = '0'+ month;
-    }
-    this.setState({stock: stockTimes.stock['Time Series (60min)'][`2018-${month}-${day} ${hour}`]});
   }
 
   render() {
@@ -76,7 +40,8 @@ class Dashboard extends React.Component {
         return <StockItem
                 stock={stock}
                 fetchStock={this.props.fetchStock}
-                key={stock.id}>{stock.ticker_id}></StockItem>
+                key={stock.id}>{stock.ticker_id}>
+              </StockItem>;
       });
     }
 
@@ -92,7 +57,7 @@ class Dashboard extends React.Component {
           />
         <button onClick={this.searchForStock}>Check stock</button>
         <h2>Current Price</h2>
-        {this.state.stock['1. open']}
+        {this.state.stockPrice}
         <button onClick={this.props.logout}>Logout</button>
         <h2>My Stocks</h2>
         {stockList}

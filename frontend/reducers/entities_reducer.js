@@ -4,7 +4,7 @@ import { stockReducer } from './stock_reducer';
 
 const entitiesReducer = combineReducers({
   session: sessionReducer,
-  stock: stockReducer
+  stocks: stockReducer
 });
 
 export default entitiesReducer;
