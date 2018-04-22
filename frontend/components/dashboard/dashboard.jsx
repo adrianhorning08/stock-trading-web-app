@@ -1,4 +1,5 @@
 import React from 'react';
+import StockItem from '../stocks/stock_items';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -72,7 +73,10 @@ class Dashboard extends React.Component {
       stockList = null;
     } else {
       stockList = Object.values(this.props.stocks).map(stock => {
-        return <li key={stock.id}>{stock.ticker_id}</li>;
+        return <StockItem
+                stock={stock}
+                fetchStock={this.props.fetchStock}
+                key={stock.id}>{stock.ticker_id}></StockItem>
       });
     }
 
