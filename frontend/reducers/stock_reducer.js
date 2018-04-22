@@ -1,10 +1,22 @@
 import { RECEIVE_STOCK } from '../actions/stock_actions';
+import { RECEIVE_USER } from '../actions/user_actions';
 import merge from 'lodash/merge';
 
-export const stockReducer = (state = {}, action) => {
+const _nullStock = {
+  currentStock: null,
+  stocks: null
+};
+
+export const stockReducer = (state = _nullStock, action) => {
+  const newState = {};
+  console.log(action);
   switch (action.type) {
+    case RECEIVE_USER:
+      newState.stocks = action.payload.stocks;
+      return merge({}, state, newState);
     case RECEIVE_STOCK:
-      return action.stock;
+      newState.currentStock = action.stock;
+      return merge({}, state, newState);
     default:
       return state;
   }

@@ -11,6 +11,10 @@ class Dashboard extends React.Component {
     this.calcCurrStockPrice = this.calcCurrStockPrice.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchUser(this.props.currentUser.id);
+  }
+
   update() {
     return e => {
       this.setState({stockName: e.target.value});
@@ -60,12 +64,17 @@ class Dashboard extends React.Component {
     this.setState({stock: stockTimes.stock['Time Series (60min)'][`2018-${month}-${day} ${hour}`]});
   }
 
-  // ticker {
-  //   pricePurchased: 34,
-  //   numStocks = 0;
-  // }
-
   render() {
+    let stockList;
+    if (this.props.stocks === null) {
+      stockList = null;
+    } else {
+      console.log(this.props.stocks);
+      stockList = Object.values(this.props.stocks).map(stock => {
+        return <li>{stock.ticker_id}</li>;
+      });
+    }
+
     return (
       <div>
         <h1>Dash</h1>
@@ -80,6 +89,8 @@ class Dashboard extends React.Component {
         <h2>Current Price</h2>
         {this.state.stock['1. open']}
         <button onClick={this.props.logout}>Logout</button>
+        <h2>My Stocks</h2>
+        {stockList}
       </div>
     );
   }
