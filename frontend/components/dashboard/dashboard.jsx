@@ -6,6 +6,7 @@ class Dashboard extends React.Component {
     this.state = {
       stockName: ''
     };
+    this.searchForStock = this.searchForStock.bind(this);
   }
 
   update() {
@@ -16,7 +17,7 @@ class Dashboard extends React.Component {
 
   searchForStock(e) {
     e.preventDefault();
-    this.props.fetchStock(this.state.stockName).then(res => console.log(res));
+    this.props.fetchStock(this.state.stockName);
   }
 
   render() {
@@ -29,7 +30,7 @@ class Dashboard extends React.Component {
           value={this.state.stockName}
           onChange={this.update('stockName')}
           />
-        <button></button>
+        <button onClick={this.searchForStock}>Check stock</button>
         <button onClick={this.props.logout}>Logout</button>
       </div>
     );
