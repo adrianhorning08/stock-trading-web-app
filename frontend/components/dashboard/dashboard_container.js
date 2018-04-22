@@ -5,7 +5,7 @@ import { fetchStock } from '../../actions/stock_actions';
 
 const mapStateToProps = state => {
   return {
-    // user here
+    stock: state.stock
   };
 };
 
