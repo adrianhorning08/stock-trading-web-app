@@ -26,8 +26,7 @@ class Landing extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.processForm(this.state)
-      .then(() => this.setState({username: '', password: ''}));
+    this.props.processForm(this.state);
   }
 
   render() {
@@ -45,7 +44,6 @@ class Landing extends React.Component {
     return (
       <div className="auth-page">
         <div className="site-title">
-          <Link to="/"><h1>vinyasa</h1></Link>
         </div>
         <div className="auth-form-container">
           <div className="login-title">
