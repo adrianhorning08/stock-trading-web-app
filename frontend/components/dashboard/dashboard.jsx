@@ -1,8 +1,14 @@
 import React from 'react';
 
 class Dashboard extends React.Component {
+
   render() {
-    return <h1>Dash</h1>;
+    return (
+      <div>
+        <h1>Dash</h1>
+        <button onClick={this.props.logout}>Logout</button>
+      </div>
+    );
   }
 }
 
