@@ -12,7 +12,9 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.currentUser.id);
+    if (this.props.currentUser.user !== undefined) {
+      this.props.fetchUser(this.props.currentUser.user.id);
+    }
   }
 
   update() {
@@ -69,9 +71,8 @@ class Dashboard extends React.Component {
     if (this.props.stocks === null) {
       stockList = null;
     } else {
-      console.log(this.props.stocks);
       stockList = Object.values(this.props.stocks).map(stock => {
-        return <li>{stock.ticker_id}</li>;
+        return <li key={stock.id}>{stock.ticker_id}</li>;
       });
     }
 

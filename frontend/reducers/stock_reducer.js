@@ -9,7 +9,6 @@ const _nullStock = {
 
 export const stockReducer = (state = _nullStock, action) => {
   const newState = {};
-  console.log(action);
   switch (action.type) {
     case RECEIVE_USER:
       newState.stocks = action.payload.stocks;
