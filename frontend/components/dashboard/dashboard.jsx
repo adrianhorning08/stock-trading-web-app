@@ -57,8 +57,13 @@ class Dashboard extends React.Component {
     if (month < 10) {
       month = '0'+ month;
     }
-    this.setState({stock: stockTimes.stock['Time Series (60min)'][`2018-${month}-${day} 16:00:00`]});
+    this.setState({stock: stockTimes.stock['Time Series (60min)'][`2018-${month}-${day} ${hour}`]});
   }
+
+  // ticker {
+  //   pricePurchased: 34,
+  //   numStocks = 0;
+  // }
 
   render() {
     return (
@@ -71,9 +76,9 @@ class Dashboard extends React.Component {
           onChange={this.update('stockName')}
           placeholder="Type in ticker symbol"
           />
+        <button onClick={this.searchForStock}>Check stock</button>
         <h2>Current Price</h2>
         {this.state.stock['1. open']}
-        <button onClick={this.searchForStock}>Check stock</button>
         <button onClick={this.props.logout}>Logout</button>
       </div>
     );
