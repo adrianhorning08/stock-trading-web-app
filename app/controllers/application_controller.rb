@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :current_user_for_reload
 
   def current_user
     @current_user ||= User.find_by_session_token(session[:session_token])
+  end
+
+  def current_user_for_reload
+    @current_user ||= User.find_by_session_token(session[:session_token])
+    render json: @current_user
   end
 
   def logged_in?
