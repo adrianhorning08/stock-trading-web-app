@@ -10,6 +10,7 @@ class Dashboard extends React.Component {
       stockPrice: null
     };
     this.searchForStock = this.searchForStock.bind(this);
+    this.buyStockButton = this.buyStockButton.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +30,14 @@ class Dashboard extends React.Component {
     fetchCurrPrice(this.state.stockName).then(res => {
       this.setState({stockPrice: res.quote.latestPrice});
     });
+  }
+
+  buyStockButton() {
+    if (this.state.stockPrice) {
+      return <button>Buy</button>;
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -58,7 +67,7 @@ class Dashboard extends React.Component {
           />
         <button onClick={this.searchForStock}>Check stock</button>
         <h2>Current Price</h2>
-        {this.state.stockPrice}
+        {this.state.stockPrice}{this.buyStockButton()}
         <h1>My Stocks</h1>
         {stockList}
       </div>

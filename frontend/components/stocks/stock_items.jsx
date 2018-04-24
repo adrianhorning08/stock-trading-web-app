@@ -7,6 +7,7 @@ class StockItem extends React.Component {
     this.state = {
       currPrice: null
     };
+    this.gainLoss = this.gainLoss.bind(this);
   }
 
   componentDidMount() {
@@ -15,11 +16,16 @@ class StockItem extends React.Component {
     });
   }
 
+  gainLoss() {
+    // return ((this.state.currPrice - this.props.stock.purchase_cost)/this.props.stock.purchase_cost).toFixed(2);
+    const stock = this.props.stock;
+    const orignal = stock.purchase_cost * stock.amount;
+    const gainLoss = this.state.currPrice * stock.amount;
+    const ans = (gainLoss - orignal).toFixed(2);
+    return `$${ans}`;
+  }
+
   render() {
-    if (this.state.currPrice === null) {
-      return null;
-    } else {
-      let gainLoss = ((this.state.currPrice - this.props.stock.purchase_cost)/this.props.stock.purchase_cost).toFixed(2);
       return (
         <div className="stock-item">
           <h2>{this.props.stock.ticker_id}</h2>
@@ -28,11 +34,12 @@ class StockItem extends React.Component {
           <h3>Your Shares</h3>
           {this.props.stock.amount}
           <h3>Gain/Loss</h3>
-          {gainLoss}%
+          {this.gainLoss()}
+          <br/>
+          <button>Sell</button>
         </div>
       );
     }
   }
-}
 
 export default StockItem;
