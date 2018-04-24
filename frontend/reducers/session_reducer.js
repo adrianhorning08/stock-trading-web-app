@@ -2,7 +2,6 @@ import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from '../actions/session_ac
 import merge from 'lodash/merge';
 
 export const sessionReducer = (state = {currentUser: null}, action) => {
-  console.log(action.payload);
   let newState = {};
   switch (action.type) {
     case RECEIVE_CURRENT_USER:

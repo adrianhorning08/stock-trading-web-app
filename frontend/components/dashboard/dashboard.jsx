@@ -13,7 +13,6 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.currentUser);
     if (this.props.currentUser !== null) {
       this.props.fetchUser(this.props.currentUser.id);
     }
