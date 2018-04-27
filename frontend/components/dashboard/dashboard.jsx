@@ -1,7 +1,9 @@
 import React from 'react';
 import StockItem from '../stocks/stock_items';
 import { fetchCurrPrice } from '../../util/stocks_api_util';
-import { ClipLoader } from 'react-spinners';
+import { ClipLoader
+
+      } from 'react-spinners';
 
 class BuyStockForm extends React.Component {
   constructor(props) {
@@ -95,7 +97,9 @@ class Dashboard extends React.Component {
     }
 
     if (this.props.loading) {
-      return <ClipLoader/>;
+      return <ClipLoader
+              size={250}
+              />;
     } else {
 
 
