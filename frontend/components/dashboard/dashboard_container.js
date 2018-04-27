@@ -7,6 +7,7 @@ const mapStateToProps = state => {
   return {
     stocks: state.entities.stocks,
     currentUser: state.entities.session.currentUser,
+    loading: state.loading
   };
 };
 

@@ -93,6 +93,11 @@ class Dashboard extends React.Component {
       });
     }
 
+    if (this.props.loading) {
+      return 'loading..';
+    } else {
+
+
     return (
       <div>
         <button onClick={this.props.logout}>Logout</button>
@@ -112,6 +117,7 @@ class Dashboard extends React.Component {
         {stockList}
       </div>
     );
+  }
   }
 }
 
