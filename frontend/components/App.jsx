@@ -7,6 +7,13 @@ import DashboardContainer from './dashboard/dashboard_container';
 const App = () => (
 
 <div>
+  <nav>
+    <ul>
+      <li>Home</li>
+      <li>About Us</li>
+      <li>Contact</li>
+    </ul>
+  </nav>
   <Switch>
     <AuthRoute exact path ="/" component={LandingContainer}/>
     <AuthRoute exact path ="/login" component={LandingContainer}/>

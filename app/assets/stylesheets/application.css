@@ -45,6 +45,14 @@ button {
   padding: 10px;
 }
 
+nav {
+  height: 80px;
+  width: 100%;
+  background-color: red;
+  box-sizing: border-box;
+  display: flex;
+}
+
 .auth-form-container {
   text-align: center;
 }

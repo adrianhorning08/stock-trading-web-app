@@ -6,10 +6,12 @@ export const FINISH_LOADING_USER = 'FINISH_LOADING_USER';
 
 export const fetchUser = id => dispatch => {
   dispatch(startLoadingUser());
-  return APIutil.fetchUser(id)
-  .then(serverUser => dispatch(receiveUser(serverUser)))
-  .then(() => setTimeout(() => dispatch(finishLoadingUser())), 2000);
+  APIutil.fetchUser(id)
+                .then(serverUser => dispatch(receiveUser(serverUser)));
 
+  setTimeout(() => {
+    dispatch(finishLoadingUser());
+  },2000);
 };
 
 const receiveUser = payload => {

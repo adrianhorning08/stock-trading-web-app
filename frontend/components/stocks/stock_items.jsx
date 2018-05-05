@@ -1,5 +1,4 @@
 import React from 'react';
-import { fetchCurrPrice } from '../../util/stocks_api_util';
 
 class StockItem extends React.Component {
   constructor(props) {
@@ -11,9 +10,7 @@ class StockItem extends React.Component {
   }
 
   componentDidMount() {
-    fetchCurrPrice(this.props.stock.ticker_id).then(res => {
-      this.setState({currPrice: res.quote.latestPrice});
-    });
+    this.props.fetchStockCurrPrice(this.props.stock.ticker_id);
   }
 
   gainLoss() {

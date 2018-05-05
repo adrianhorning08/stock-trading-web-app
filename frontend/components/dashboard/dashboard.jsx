@@ -91,7 +91,9 @@ class Dashboard extends React.Component {
         return <StockItem
                 stock={stock}
                 fetchStock={this.props.fetchStock}
-                key={stock.id}>{stock.ticker_id}>
+                key={stock.id}
+                fetchStockCurrPrice={this.props.fetchStockCurrPrice}
+                >
               </StockItem>;
       });
     }
@@ -104,9 +106,9 @@ class Dashboard extends React.Component {
 
 
     return (
-      <div>
-        <button onClick={this.props.logout}>Logout</button>
+      <section>
         <h1>Dashboard</h1>
+        <button onClick={this.props.logout}>Logout</button>
         Search for a stock
         <input
           type='text'
@@ -120,7 +122,7 @@ class Dashboard extends React.Component {
         {this.state.showForm && < BuyStockForm / >}
         <h1>My Stocks</h1>
         {stockList}
-      </div>
+      </section>
     );
   }
   }
