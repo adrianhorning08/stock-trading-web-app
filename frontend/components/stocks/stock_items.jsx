@@ -10,7 +10,8 @@ class StockItem extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchStockCurrPrice(this.props.stock.ticker_id);
+    this.props.fetchStockCurrPrice(this.props.stock.ticker_id)
+      .then(() => this.setState({currPrice: this.props.currPrices[this.props.stock.ticker_id]}));
   }
 
   gainLoss() {

@@ -93,6 +93,7 @@ class Dashboard extends React.Component {
                 fetchStock={this.props.fetchStock}
                 key={stock.id}
                 fetchStockCurrPrice={this.props.fetchStockCurrPrice}
+                currPrices={this.props.currPrices}
                 >
               </StockItem>;
       });
