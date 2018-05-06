@@ -102,7 +102,6 @@ class Dashboard extends React.Component {
     return stockList ? (
       <section>
         <h1>Dashboard</h1>
-        <button onClick={this.props.logout}>Logout</button>
         Search for a stock
         <input
           type='text'
