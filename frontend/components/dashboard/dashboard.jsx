@@ -99,14 +99,7 @@ class Dashboard extends React.Component {
       });
     }
 
-    if (this.props.loading) {
-      return <ClipLoader
-              size={250}
-              />;
-    } else {
-
-
-    return (
+    return stockList ? (
       <section>
         <h1>Dashboard</h1>
         <button onClick={this.props.logout}>Logout</button>
@@ -124,8 +117,9 @@ class Dashboard extends React.Component {
         <h1>My Stocks</h1>
         {stockList}
       </section>
-    );
-  }
+    ) : <ClipLoader
+          size={250}
+          />;
   }
 }
 
