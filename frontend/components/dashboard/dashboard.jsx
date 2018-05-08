@@ -1,9 +1,7 @@
 import React from 'react';
 import StockItem from '../stocks/stock_items';
 import { fetchCurrPrice } from '../../util/stocks_api_util';
-import { ClipLoader
-
-      } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 
 class BuyStockForm extends React.Component {
   constructor(props) {
@@ -65,7 +63,7 @@ class Dashboard extends React.Component {
 
   searchForStock(e) {
     e.preventDefault();
-    fetchCurrPrice(this.state.stockName).then(res => {
+    this.props.fetchStockCurrPrice(this.state.stockName).then(res => {
       this.setState({stockPrice: res.quote.latestPrice});
     });
   }
@@ -83,6 +81,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    console.log('here');
     let stockList;
     if (this.props.stocks === null) {
       stockList = null;

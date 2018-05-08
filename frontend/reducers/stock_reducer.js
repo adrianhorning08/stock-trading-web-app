@@ -1,4 +1,4 @@
-import { RECEIVE_USER } from '../actions/user_actions';
+import { RECEIVE_USER, RECEIVE_CURRENT_USER } from '../actions/user_actions';
 import { RECEIVE_CURRENT_STOCK_PRICE } from '../actions/stock_actions';
 import merge from 'lodash/merge';
 
