@@ -89,13 +89,8 @@ class Dashboard extends React.Component {
     let stockList;
     if (this.props.stocks === null) {
       stockList = null;
-    } else {
-      if (this.props.currPrices === null) {
-          console.log('curr price is null');
-      } else {
-        if (Object.keys(this.props.currPrices).length === Object.keys(this.props.stocks).length) {
+    } else if (Object.keys(this.props.currPrices).length === Object.keys(this.props.stocks).length) {
           stockList = Object.values(this.props.stocks).map(stock => {
-            console.log(this.props.currPrices);
             return <StockItem
               stock={stock}
               fetchStock={this.props.fetchStock}
@@ -105,9 +100,7 @@ class Dashboard extends React.Component {
               >
             </StockItem>;
           });
-        }
       }
-    }
 
     return stockList ? (
       <section>
