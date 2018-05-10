@@ -1,23 +1,15 @@
 import React from 'react';
-import { ClipLoader } from 'react-spinners';
 
 class StockItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currPrice: null
-    };
     this.gainLoss = this.gainLoss.bind(this);
-  }
-
-  componentDidMount() {
-
   }
 
   gainLoss() {
     const stock = this.props.stock;
     const orignal = stock.purchase_cost * stock.amount;
-    const gainLoss = this.state.currPrice * stock.amount;
+    const gainLoss = this.props.currPrice * stock.amount;
     const ans = (gainLoss - orignal).toFixed(2);
     return `$${ans}`;
   }
