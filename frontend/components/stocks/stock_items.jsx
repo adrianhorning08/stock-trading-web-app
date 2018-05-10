@@ -1,4 +1,5 @@
 import React from 'react';
+import { ClipLoader } from 'react-spinners';
 
 class StockItem extends React.Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class StockItem extends React.Component {
   }
 
   gainLoss() {
-    // return ((this.state.currPrice - this.props.stock.purchase_cost)/this.props.stock.purchase_cost).toFixed(2);
     const stock = this.props.stock;
     const orignal = stock.purchase_cost * stock.amount;
     const gainLoss = this.state.currPrice * stock.amount;
@@ -24,8 +24,8 @@ class StockItem extends React.Component {
   }
 
   render() {
-      return (
-        <div className="stock-item">
+      return this.state.currPrice ? (
+        <section className="stock-item">
           <h2>{this.props.stock.ticker_id}</h2>
           <h3>Current Price</h3>
           ${this.state.currPrice}
@@ -35,8 +35,10 @@ class StockItem extends React.Component {
           {this.gainLoss()}
           <br/>
           <button>Sell</button>
-        </div>
-      );
+        </section>
+      ) : <ClipLoader
+            size={250}
+            />;
     }
   }
 

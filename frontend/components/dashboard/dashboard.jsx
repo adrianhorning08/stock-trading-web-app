@@ -50,9 +50,7 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.currentUser !== null) {
-      this.props.fetchUser(this.props.currentUser.id);
-    }
+    this.props.fetchUser(this.props.currentUser.id);
   }
 
   update() {
@@ -97,7 +95,7 @@ class Dashboard extends React.Component {
       });
     }
 
-    return stockList ? (
+    return (
       <section>
         <h1>Dashboard</h1>
         Search for a stock
@@ -114,9 +112,7 @@ class Dashboard extends React.Component {
         <h1>My Stocks</h1>
         {stockList}
       </section>
-    ) : <ClipLoader
-          size={250}
-          />;
+    );
   }
 }
 
