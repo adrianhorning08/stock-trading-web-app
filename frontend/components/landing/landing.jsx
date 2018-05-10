@@ -41,7 +41,7 @@ class Landing extends React.Component {
     }
 
     return (
-      <div className="auth-page">
+      <section className="auth-page">
         <div className="site-title">
         </div>
         <div className="auth-form-container">
@@ -81,7 +81,7 @@ class Landing extends React.Component {
         <span>{footerText}</span>
         <Link to={newPath}>{textToNewPath}</Link>
       </div>
-    </div>
+    </section>
     );
   }
 }

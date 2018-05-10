@@ -81,7 +81,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    console.log('here');
     let stockList;
     if (this.props.stocks === null) {
       stockList = null;

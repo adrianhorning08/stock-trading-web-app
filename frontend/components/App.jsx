@@ -14,7 +14,7 @@ class App extends React.Component {
                       <button onClick={this.props.logout}>Logout</button>
                       : null;
     return (
-      <div>
+      <section>
         <nav>
           <ul>
             <li>Home</li>
@@ -30,7 +30,7 @@ class App extends React.Component {
           <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
           <Redirect to="/" component={LandingContainer} />
         </Switch>
-      </div>
+      </section>
     );
   }
 }
