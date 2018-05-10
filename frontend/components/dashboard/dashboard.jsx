@@ -50,7 +50,12 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.currentUser.id);
+    this.props.fetchUser(this.props.currentUser.id)
+    .then(res => {
+      Object.values(res.payload.stocks).map(el => {
+        this.props.fetchStockCurrPrice(el.ticker_id);
+      });
+    });
   }
 
   update() {
@@ -79,23 +84,32 @@ class Dashboard extends React.Component {
   }
 
   render() {
+
+// Refactor the hell outta this
     let stockList;
     if (this.props.stocks === null) {
       stockList = null;
     } else {
-      stockList = Object.values(this.props.stocks).map(stock => {
-        return <StockItem
-                stock={stock}
-                fetchStock={this.props.fetchStock}
-                key={stock.id}
-                fetchStockCurrPrice={this.props.fetchStockCurrPrice}
-                currPrices={this.props.currPrices}
-                >
-              </StockItem>;
-      });
+      if (this.props.currPrices === null) {
+          console.log('curr price is null');
+      } else {
+        if (Object.keys(this.props.currPrices).length === Object.keys(this.props.stocks).length) {
+          stockList = Object.values(this.props.stocks).map(stock => {
+            console.log(this.props.currPrices);
+            return <StockItem
+              stock={stock}
+              fetchStock={this.props.fetchStock}
+              key={stock.id}
+              fetchStockCurrPrice={this.props.fetchStockCurrPrice}
+              currPrice={this.props.currPrices[stock.ticker_id]}
+              >
+            </StockItem>;
+          });
+        }
+      }
     }
 
-    return (
+    return stockList ? (
       <section>
         <h1>Dashboard</h1>
         Search for a stock
@@ -112,7 +126,9 @@ class Dashboard extends React.Component {
         <h1>My Stocks</h1>
         {stockList}
       </section>
-    );
+    ) : <ClipLoader
+          size={250}
+          />;
   }
 }
 

@@ -11,8 +11,7 @@ class StockItem extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchStockCurrPrice(this.props.stock.ticker_id)
-      .then(() => this.setState({currPrice: this.props.currPrices[this.props.stock.ticker_id]}));
+
   }
 
   gainLoss() {
@@ -24,11 +23,11 @@ class StockItem extends React.Component {
   }
 
   render() {
-      return this.state.currPrice ? (
+      return (
         <section className="stock-item">
           <h2>{this.props.stock.ticker_id}</h2>
           <h3>Current Price</h3>
-          ${this.state.currPrice}
+          ${this.props.currPrice}
           <h3>Your Shares</h3>
           {this.props.stock.amount}
           <h3>Gain/Loss</h3>
@@ -36,9 +35,7 @@ class StockItem extends React.Component {
           <br/>
           <button>Sell</button>
         </section>
-      ) : <ClipLoader
-            size={250}
-            />;
+      );
     }
   }
 
