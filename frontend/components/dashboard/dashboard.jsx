@@ -2,39 +2,7 @@ import React from 'react';
 import StockItem from '../stocks/stock_items';
 import { fetchStockCurrPrice } from '../../util/stocks_api_util';
 import { ClipLoader } from 'react-spinners';
-
-class BuyStockForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      amount: undefined
-    };
-  }
-
-  handleFormSubmit(e) {
-    e.preventDefault();
-  }
-
-  update() {
-    return e => {
-      this.setState({amount: e.target.value.replace(/\D/,'')});
-    };
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleFormSubmit}>
-        <input
-          type="number"
-          value={this.state.amount}
-          placeholder="How many shares?"
-          onChange={this.update}
-          />
-        <button>Submit</button>
-      </form>
-    );
-  }
-}
+import BuyStockFormContainer from '../buy_stock_form/buy_stock_form_container';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -46,7 +14,7 @@ class Dashboard extends React.Component {
     };
     this.searchForStock = this.searchForStock.bind(this);
     this.buyStockButton = this.buyStockButton.bind(this);
-    this.handleBuyStockSubmit = this.handleBuyStockSubmit.bind(this);
+    this.toggleBuyStockForm = this.toggleBuyStockForm.bind(this);
   }
 
   async componentDidMount() {
@@ -68,13 +36,13 @@ class Dashboard extends React.Component {
     this.setState({stockPrice: response.quote.latestPrice});
   }
 
-  handleBuyStockSubmit(e) {
+  toggleBuyStockForm(e) {
     this.setState({showForm: !this.state.showForm});
   }
 
   buyStockButton() {
     if (this.state.stockPrice) {
-      return <button onClick={this.handleBuyStockSubmit}>Buy</button>;
+      return <button onClick={this.toggleBuyStockForm}>Buy</button>;
     } else {
       return null;
     }
@@ -111,7 +79,7 @@ class Dashboard extends React.Component {
         <button onClick={this.searchForStock}>Check stock</button>
         <h2>Current Price</h2>
         {this.state.stockPrice}{this.buyStockButton()}
-        {this.state.showForm && < BuyStockForm / >}
+        {this.state.showForm && < BuyStockFormContainer / >}
         <h1>My Stocks</h1>
         {stockList}
       </section>

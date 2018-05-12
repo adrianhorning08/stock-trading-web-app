@@ -1,16 +1,32 @@
 import { RECEIVE_USER, RECEIVE_CURRENT_USER } from '../actions/user_actions';
-import { RECEIVE_CURRENT_STOCK_PRICE } from '../actions/stock_actions';
+import {
+  RECEIVE_CURRENT_STOCK_PRICE,
+  RECEIVE_STOCK,
+  RECEIVE_SEARCHED_STOCK
+} from '../actions/stock_actions';
 import merge from 'lodash/merge';
 
 const _nullStock = {
   stocks: null,
-  currPrices: {}
+  currPrices: {},
+  searchStock: null
 };
 
 export const stockReducer = (state = _nullStock, action) => {
   Object.freeze(state);
   let newState;
   switch (action.type) {
+    case RECEIVE_SEARCHED_STOCK:
+      newState = merge({}, state);
+      newState.searchStock = {
+        tickerId: action.payload.quote.symbol,
+        price: action.payload.quote.latestPrice
+      };
+      return newState;
+    case RECEIVE_STOCK:
+      newState = merge({}, state);
+      console.log(action.payload);
+      return;
     case RECEIVE_USER:
       newState = merge({}, state);
       newState.stocks = action.payload.stocks;

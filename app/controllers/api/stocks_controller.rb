@@ -8,6 +8,12 @@ class Api::StocksController < ApplicationController
     end
   end
 
+  # def destroy
+  #   @stock = Stock.find_by(id: params[:id])
+  #   @stock.destroy
+  #   # render "api/stocks/show"
+  # end
+
   private
   def stock_params
     params.require(:user).permit(:ticker_id, :purchase_cost, :amount, :user_id)
