@@ -2,7 +2,11 @@ import { connect } from 'react-redux';
 import Dashboard from './dashboard';
 import { logout } from '../../actions/session_actions';
 import { fetchUser } from '../../actions/user_actions';
-import { fetchStockCurrPrice, buyStock } from '../../actions/stock_actions';
+import {
+  fetchStockCurrPrice,
+  buyStock,
+  fetchSearchedStock
+} from '../../actions/stock_actions';
 
 const mapStateToProps = state => {
   return {
@@ -19,6 +23,7 @@ const mapDispatchToProps = dispatch => {
     fetchUser: id => dispatch(fetchUser(id)),
     fetchStockCurrPrice: tickerId => dispatch(fetchStockCurrPrice(tickerId)),
     buyStock: stock => dispatch(buyStock(stock)),
+    fetchSearchedStock: stock => dispatch(fetchSearchedStock(stock))
   };
 };
 

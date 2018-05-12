@@ -4,13 +4,14 @@ class BuyStockForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      tickerId: undefined,
       amount: undefined
     };
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleFormSubmit(e) {
     e.preventDefault();
+    console.log(this.state.amount);
   }
 
   update() {

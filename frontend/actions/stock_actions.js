@@ -9,7 +9,7 @@ export const fetchStockCurrPrice = tickerId => dispatch => {
         .then(currStockPrice => dispatch(receiveCurrStockPrice(currStockPrice)));
 };
 
-export const fetchSearchedstock = tickerId => dispatch => {
+export const fetchSearchedStock = tickerId => dispatch => {
   return APIutil.fetchStockCurrPrice(tickerId)
         .then(stock => dispatch(receiveSearchedStock(stock)));
 };

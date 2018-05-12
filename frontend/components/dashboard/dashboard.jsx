@@ -1,6 +1,5 @@
 import React from 'react';
 import StockItem from '../stocks/stock_items';
-import { fetchStockCurrPrice } from '../../util/stocks_api_util';
 import { ClipLoader } from 'react-spinners';
 import BuyStockFormContainer from '../buy_stock_form/buy_stock_form_container';
 
@@ -32,8 +31,8 @@ class Dashboard extends React.Component {
 
   async searchForStock(e) {
     e.preventDefault();
-    let response = await fetchStockCurrPrice(this.state.stockName);
-    this.setState({stockPrice: response.quote.latestPrice});
+    let response = await this.props.fetchSearchedStock(this.state.stockName);
+    this.setState({stockPrice: response.payload.quote.latestPrice});
   }
 
   toggleBuyStockForm(e) {
