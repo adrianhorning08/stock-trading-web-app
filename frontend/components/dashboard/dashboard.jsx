@@ -64,7 +64,7 @@ class Dashboard extends React.Component {
     };
   }
 
-  searchForStock(e) {
+  async searchForStock(e) {
     e.preventDefault();
     fetchStockCurrPrice(this.state.stockName).then(res => {
       this.setState({stockPrice: res.quote.latestPrice});
