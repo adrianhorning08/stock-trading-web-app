@@ -49,12 +49,10 @@ class Dashboard extends React.Component {
     this.handleBuyStockSubmit = this.handleBuyStockSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchUser(this.props.currentUser.id)
-    .then(res => {
-      Object.values(res.payload.stocks).map(el => {
+  async componentDidMount() {
+    let response = await this.props.fetchUser(this.props.currentUser.id)
+      Object.values(response.payload.stocks).map(el => {
         this.props.fetchStockCurrPrice(el.ticker_id);
-      });
     });
   }
 
@@ -66,9 +64,8 @@ class Dashboard extends React.Component {
 
   async searchForStock(e) {
     e.preventDefault();
-    fetchStockCurrPrice(this.state.stockName).then(res => {
-      this.setState({stockPrice: res.quote.latestPrice});
-    });
+    let response = await fetchStockCurrPrice(this.state.stockName);
+    this.setState({stockPrice: response.quote.latestPrice});
   }
 
   handleBuyStockSubmit(e) {
