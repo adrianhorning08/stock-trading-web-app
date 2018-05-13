@@ -4,9 +4,10 @@ class BuyStockForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      amount: '1'
+      amount: ''
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.update = this.update.bind(this);
   }
 
   handleFormSubmit(e) {
@@ -14,10 +15,7 @@ class BuyStockForm extends React.Component {
   }
 
   update(e) {
-    console.log(e.target.value);
-    return () => {
-      this.setState({amount: e.target.value});
-    };
+    this.setState({amount: e.target.value});
   }
 
   render() {
