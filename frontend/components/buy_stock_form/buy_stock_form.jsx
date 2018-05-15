@@ -12,9 +12,13 @@ class BuyStockForm extends React.Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-    this.props.stock.amount = this.state.amount;
-    this.props.stock.user_id = this.props.userId;
-    this.props.buyStock(this.props.stock);
+    const stock = {
+      ticker_id: this.props.stock.tickerId,
+      purchase_cost: this.props.stock.price,
+      amount: Number(this.state.amount),
+      user_id: this.props.userId
+    };
+    this.props.buyStock(stock);
   }
 
   update(e) {
