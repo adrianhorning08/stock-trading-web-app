@@ -4,7 +4,8 @@ import { buyStock } from '../../actions/stock_actions';
 
 const mapStateToProps = state => {
   return {
-    stock: state.entities.stocks.searchStock
+    stock: state.entities.stocks.searchStock,
+    userId: state.entities.session.currentUser.id
   };
 };
 

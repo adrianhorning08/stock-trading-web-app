@@ -16,6 +16,6 @@ class Api::StocksController < ApplicationController
 
   private
   def stock_params
-    params.require(:user).permit(:ticker_id, :purchase_cost, :amount, :user_id)
+    params.require(:stock).permit(:ticker_id, :purchase_cost, :amount, :user_id)
   end
 end
