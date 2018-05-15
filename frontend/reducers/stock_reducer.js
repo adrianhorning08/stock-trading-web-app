@@ -25,8 +25,8 @@ export const stockReducer = (state = _nullStock, action) => {
       return newState;
     case RECEIVE_STOCK:
       newState = merge({}, state);
-      console.log(action.payload);
-      return;
+      newState.stocks[action.payload.stock.ticker_id] = action.payload.stock;
+      return newState;
     case RECEIVE_USER:
       newState = merge({}, state);
       newState.stocks = action.payload.stocks;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import BuyStockForm from './buy_stock_form';
-import { buyStock } from '../../actions/stock_actions';
+import { buyStock, fetchStockCurrPrice } from '../../actions/stock_actions';
 
 const mapStateToProps = state => {
   return {
@@ -11,7 +11,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    buyStock: stock => dispatch(buyStock(stock))
+    buyStock: stock => dispatch(buyStock(stock)),
+    fetchStockCurrPrice: stock => dispatch(fetchStockCurrPrice(stock))
   };
 };
 

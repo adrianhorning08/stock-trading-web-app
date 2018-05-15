@@ -18,7 +18,7 @@ class BuyStockForm extends React.Component {
       amount: Number(this.state.amount),
       user_id: this.props.userId
     };
-    this.props.buyStock(stock);
+    this.props.buyStock(stock).then(() => this.props.fetchStockCurrPrice(stock.ticker_id));
   }
 
   update(e) {
