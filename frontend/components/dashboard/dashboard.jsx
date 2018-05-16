@@ -32,9 +32,11 @@ class Dashboard extends React.Component {
 
   async searchForStock(e) {
     e.preventDefault();
+
     let response = await this.props.fetchSearchedStock(this.state.tickerId);
     this.setState(
       {
+        tickerId: '',
         stockPrice: response.payload.quote.latestPrice,
         companyName: response.payload.quote.companyName
       }
