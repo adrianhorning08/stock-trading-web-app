@@ -5,7 +5,8 @@ import { fetchUser } from '../../actions/user_actions';
 import {
   fetchStockCurrPrice,
   buyStock,
-  fetchSearchedStock
+  fetchSearchedStock,
+  showBuyStockForm
 } from '../../actions/stock_actions';
 
 const mapStateToProps = state => {
@@ -13,7 +14,7 @@ const mapStateToProps = state => {
     stocks: state.entities.stocks.stocks,
     currentUser: state.entities.session.currentUser,
     currPrices: state.entities.stocks.currPrices,
-    loading: state.loading
+    showForm: state.ui.showForm
   };
 };
 
@@ -23,7 +24,8 @@ const mapDispatchToProps = dispatch => {
     fetchUser: id => dispatch(fetchUser(id)),
     fetchStockCurrPrice: tickerId => dispatch(fetchStockCurrPrice(tickerId)),
     buyStock: stock => dispatch(buyStock(stock)),
-    fetchSearchedStock: stock => dispatch(fetchSearchedStock(stock))
+    fetchSearchedStock: stock => dispatch(fetchSearchedStock(stock)),
+    showBuyStockForm: () => dispatch(showBuyStockForm())
   };
 };
 

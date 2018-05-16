@@ -9,12 +9,10 @@ class Dashboard extends React.Component {
     this.state = {
       tickerId: '',
       stockPrice: null,
-      showForm: false,
       companyName: ''
     };
     this.searchForStock = this.searchForStock.bind(this);
     this.buyStockButton = this.buyStockButton.bind(this);
-    this.toggleBuyStockForm = this.toggleBuyStockForm.bind(this);
   }
 
   async componentDidMount() {
@@ -43,13 +41,9 @@ class Dashboard extends React.Component {
     );
   }
 
-  toggleBuyStockForm(e) {
-    this.setState({showForm: !this.state.showForm});
-  }
-
   buyStockButton() {
     if (this.state.stockPrice) {
-      return <button onClick={this.toggleBuyStockForm}>Buy</button>;
+      return <button onClick={this.props.showBuyStockForm}>Buy</button>;
     } else {
       return null;
     }
@@ -86,7 +80,7 @@ class Dashboard extends React.Component {
         <button onClick={this.searchForStock}>Check stock</button>
         <h2>Current Price</h2>
         {this.state.stockPrice}{this.state.companyName}{this.buyStockButton()}
-        {this.state.showForm && < BuyStockFormContainer / >}
+        {this.props.showForm && < BuyStockFormContainer / >}
         <h1>My Stocks</h1>
         {stockList}
       </section>
