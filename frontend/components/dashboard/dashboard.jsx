@@ -6,13 +6,6 @@ import BuyStockFormContainer from '../buy_stock_form/buy_stock_form_container';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      tickerId: '',
-      stockPrice: null,
-      companyName: ''
-    };
-    this.searchForStock = this.searchForStock.bind(this);
-    this.buyStockButton = this.buyStockButton.bind(this);
   }
 
   async componentDidMount() {
@@ -20,33 +13,6 @@ class Dashboard extends React.Component {
       Object.values(response.payload.stocks).map(el => {
         this.props.fetchStockCurrPrice(el.ticker_id);
     });
-  }
-
-  update() {
-    return e => {
-      this.setState({tickerId: e.target.value});
-    };
-  }
-
-  async searchForStock(e) {
-    e.preventDefault();
-
-    let response = await this.props.fetchSearchedStock(this.state.tickerId);
-    this.setState(
-      {
-        tickerId: '',
-        stockPrice: response.payload.quote.latestPrice,
-        companyName: response.payload.quote.companyName
-      }
-    );
-  }
-
-  buyStockButton() {
-    if (this.state.stockPrice) {
-      return <button onClick={this.props.showBuyStockForm}>Buy</button>;
-    } else {
-      return null;
-    }
   }
 
   render() {
@@ -70,17 +36,7 @@ class Dashboard extends React.Component {
     return stockList ? (
       <section>
         <h1>Dashboard</h1>
-        Search for a stock
-        <input
-          type='text'
-          value={this.state.tickerId}
-          onChange={this.update()}
-          placeholder="Type in ticker symbol"
-          />
-        <button onClick={this.searchForStock}>Check stock</button>
-        <h2>Current Price</h2>
-        {this.state.stockPrice}{this.state.companyName}{this.buyStockButton()}
-        {this.props.showForm && < BuyStockFormContainer / >}
+        <BuyStockFormContainer/>
         <h1>My Stocks</h1>
         {stockList}
       </section>

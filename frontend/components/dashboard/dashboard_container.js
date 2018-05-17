@@ -23,8 +23,6 @@ const mapDispatchToProps = dispatch => {
     logout: () => dispatch(logout()),
     fetchUser: id => dispatch(fetchUser(id)),
     fetchStockCurrPrice: tickerId => dispatch(fetchStockCurrPrice(tickerId)),
-    buyStock: stock => dispatch(buyStock(stock)),
-    fetchSearchedStock: stock => dispatch(fetchSearchedStock(stock)),
     showBuyStockForm: () => dispatch(showBuyStockForm())
   };
 };
