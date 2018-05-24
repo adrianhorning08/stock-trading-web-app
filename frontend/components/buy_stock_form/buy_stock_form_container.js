@@ -9,7 +9,8 @@ import {
 const mapStateToProps = state => {
   return {
     stock: state.entities.stocks.searchStock,
-    userId: state.entities.session.currentUser.id
+    userId: state.entities.session.currentUser.id,
+    stocks: state.entities.stocks.stocks
   };
 };
 

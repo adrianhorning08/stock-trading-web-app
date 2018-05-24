@@ -31,7 +31,7 @@ class BuyStockForm extends React.Component {
     let response = await fetchStockCurrPrice(this.state.tickerId);
     this.setState(
       {
-        tickerId: '',
+        tickerId: response.quote.symbol,
         stockPrice: response.quote.latestPrice,
         companyName: response.quote.companyName
       }
@@ -52,13 +52,21 @@ class BuyStockForm extends React.Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
+
+    // After it submits, it should clear the state
+
+
     const stock = {
-      ticker_id: this.props.stock.tickerId,
-      purchase_cost: this.props.stock.price,
+      ticker_id: this.state.tickerId,
+      purchase_cost: this.state.stockPrice,
       amount: Number(this.state.amount),
       user_id: this.props.userId
     };
-    this.props.buyStock(stock).then(() => this.props.fetchStockCurrPrice(stock.ticker_id));
+    if (this.props.stocks[stock.ticker_id]) {
+      
+    } else {
+      this.props.buyStock(stock).then(() => this.props.fetchStockCurrPrice(stock.ticker_id));
+    }
   }
 
   showStockSubmitForm() {
