@@ -43,10 +43,16 @@ class BuyStockForm extends React.Component {
   }
 
   buyStockButton() {
+    // this is where you should check to see if they already have the stock
+
     if (this.state.stockPrice) {
-      return <button onClick={this.toggleSubmitForm}>Buy</button>;
+      if (this.props.stocks[this.state.tickerId]) {
+        return <p>Looks like you already have that stock chief. You wanna buy more shares?</p>
+      } else {
+        return <button onClick={this.toggleSubmitForm}>Buy</button>;
+      }
     } else {
-      return null;
+      return null
     }
   }
 
@@ -62,11 +68,7 @@ class BuyStockForm extends React.Component {
       amount: Number(this.state.amount),
       user_id: this.props.userId
     };
-    if (this.props.stocks[stock.ticker_id]) {
-      
-    } else {
-      this.props.buyStock(stock).then(() => this.props.fetchStockCurrPrice(stock.ticker_id));
-    }
+    this.props.buyStock(stock).then(() => this.props.fetchStockCurrPrice(stock.ticker_id));
   }
 
   showStockSubmitForm() {
