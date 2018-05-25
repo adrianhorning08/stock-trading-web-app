@@ -8,6 +8,15 @@ class Api::StocksController < ApplicationController
     end
   end
 
+  def update
+    @stock = Stock.find_by(id: params[:id])
+
+    if @stock
+
+    end
+  end
+  # this and that
+
   # def destroy
   #   @stock = Stock.find_by(id: params[:id])
   #   @stock.destroy

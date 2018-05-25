@@ -15,7 +15,7 @@ export const fetchStockCurrPrice = (ticker) => {
 //   });
 // };
 
-export const buyStock = stock => {
+export const buyNewStock = stock => {
   return $.ajax({
     method: 'POST',
     url: 'api/stocks',

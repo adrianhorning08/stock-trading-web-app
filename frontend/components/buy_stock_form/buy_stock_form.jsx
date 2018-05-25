@@ -9,7 +9,8 @@ class BuyStockForm extends React.Component {
       tickerId: '',
       stockPrice: null,
       companyName: '',
-      showStockSubmitForm: false
+      showStockSubmitForm: false,
+      buyingNewStock: true
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.update = this.update.bind(this);
@@ -17,6 +18,7 @@ class BuyStockForm extends React.Component {
     this.buyStockButton = this.buyStockButton.bind(this);
     this.showStockSubmitForm = this.showStockSubmitForm.bind(this);
     this.toggleSubmitForm = this.toggleSubmitForm.bind(this);
+    this.clearState = this.clearState.bind(this);
   }
 
   update(field) {
@@ -42,12 +44,24 @@ class BuyStockForm extends React.Component {
     this.setState({showStockSubmitForm: !this.state.showStockSubmitForm})
   }
 
-  buyStockButton() {
-    // this is where you should check to see if they already have the stock
+  clearState() {
+    this.setState({
+      tickerId: '',
+      stockPrice: null,
+      companyName: ''
+    })
+  }
 
+  buyStockButton() {
     if (this.state.stockPrice) {
       if (this.props.stocks[this.state.tickerId]) {
-        return <p>Looks like you already have that stock chief. You wanna buy more shares?</p>
+        return (
+          <div className="buy-shares">
+            <p>Looks like you already have that stock chief. You wanna buy more shares?</p>
+            <button>Let's do it</button>
+            <button onClick={this.clearState}>Nah I'm good</button>
+          </div>
+        )
       } else {
         return <button onClick={this.toggleSubmitForm}>Buy</button>;
       }
@@ -60,7 +74,7 @@ class BuyStockForm extends React.Component {
     e.preventDefault();
 
     // After it submits, it should clear the state
-
+    // this should buyNewStock or buyMoreShares based on if this.state.buyNewStock is true/false
 
     const stock = {
       ticker_id: this.state.tickerId,
@@ -68,7 +82,12 @@ class BuyStockForm extends React.Component {
       amount: Number(this.state.amount),
       user_id: this.props.userId
     };
-    this.props.buyStock(stock).then(() => this.props.fetchStockCurrPrice(stock.ticker_id));
+
+    if (this.state.buyNewStock) {
+      this.props.buyNewStock(stock).then(() => this.props.fetchStockCurrPrice(stock.ticker_id));
+    } else {
+
+    }
   }
 
   showStockSubmitForm() {
