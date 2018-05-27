@@ -11,8 +11,10 @@ class Api::StocksController < ApplicationController
   def update
     @stock = Stock.find_by(id: params[:id])
 
-    if @stock
-
+    if @stock.update(stock_params)
+      render 'api/stocks/show'
+    else
+      render json: @stock.errors.full_messages, status: 422
     end
   end
   # this and that
