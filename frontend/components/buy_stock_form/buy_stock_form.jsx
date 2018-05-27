@@ -58,7 +58,7 @@ class BuyStockForm extends React.Component {
         return (
           <div className="buy-shares">
             <p>Looks like you already have that stock chief. You wanna buy more shares?</p>
-            <button>Let's do it</button>
+            <button onClick={this.toggleSubmitForm}>Let's do it</button>
             <button onClick={this.clearState}>Nah I'm good</button>
           </div>
         )
@@ -86,7 +86,10 @@ class BuyStockForm extends React.Component {
     if (this.state.buyNewStock) {
       this.props.buyNewStock(stock).then(() => this.props.fetchStockCurrPrice(stock.ticker_id));
     } else {
-
+      stock.id = this.props.stocks[this.state.tickerId].id
+      this.props.buyMoreShares(stock);
+      // so now you have to keep track of when it was purchased and the
+      // amount that was purchased. Then calculate the gain or loss looping over that 
     }
   }
 

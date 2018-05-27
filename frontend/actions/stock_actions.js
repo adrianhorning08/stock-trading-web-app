@@ -20,6 +20,11 @@ export const buyStock = stock => dispatch => {
         .then(serverStock => dispatch(receiveStock(serverStock)));
 };
 
+export const buyMoreShares = stock => dispatch => {
+  return APIutil.buyMoreShares(stock)
+        .then(serverStock => dispatch(receiveStock(serverStock)));
+};
+
 export const showBuyStockForm = () => dispatch => {
   return dispatch(showForm());
 };

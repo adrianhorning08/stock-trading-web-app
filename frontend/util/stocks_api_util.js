@@ -7,6 +7,14 @@ export const fetchStockCurrPrice = (ticker) => {
   });
 };
 
+export const buyMoreShares = stock => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/stocks/${stock.id}`,
+    data: { stock }
+  });
+};
+
 // Need to use this to fetch just a price - WAY easier
 // export const fetchStockCurrPrice = ticker => {
 //   return $.ajax({

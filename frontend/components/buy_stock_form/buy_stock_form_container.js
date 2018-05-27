@@ -3,7 +3,8 @@ import BuyStockForm from './buy_stock_form';
 import {
   buyNewStock,
   fetchStockCurrPrice,
-  fetchSearchedStock
+  fetchSearchedStock,
+  buyMoreShares
 } from '../../actions/stock_actions';
 
 const mapStateToProps = state => {
@@ -19,6 +20,7 @@ const mapDispatchToProps = dispatch => {
     buyNewStock: stock => dispatch(buyNewStock(stock)),
     fetchStockCurrPrice: stock => dispatch(fetchStockCurrPrice(stock)),
     fetchSearchedStock: stock => dispatch(fetchSearchedStock(stock)),
+    buyMoreShares: stock => dispatch(buyMoreShares(stock))
   };
 };
 
